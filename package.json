@@ -1,0 +1,26 @@
+{
+	"name" : "crossfilter-aggregations",
+	"version" : "0.0.1",
+	"license" : "Apache-2.0",
+	"description" : "A set of aggregating functions for crossfilter",
+	"keywords" : [
+		"data",
+		"analytics",
+		"aggregation",
+		"crossfilter"
+	],
+	"homepage" : "https://github.com/wssbck/crossfilter-helpers",
+	"bugs" : "https://github.com/wssbck/crossfilter-helpers/issues",
+	"author" : {
+		"name" : "wssbck",
+		"url" : "http://github.com/wssbck"
+	},
+	"repository" : {
+		"type" : "git",
+		"url": "git://github.com/wssbck/crossfilter-helpers"
+	},
+	"dependencies": {
+		"crossfilter" : "~1.3.9",
+	},
+	"readmeFilename" : "README.md"
+}

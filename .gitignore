@@ -1,0 +1,19 @@
+# tmp files
+*.log
+*~
+
+#IDE files
+*.sublime-project
+*.sublime-workspace
+
+# local files
+node_modules
+
+# vim files
+.*.swp
+
+# ma
+.DS_Store
+
+# files for gh-pages and grunt-contrib-jasmine
+.grunt
