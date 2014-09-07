@@ -6,6 +6,7 @@ var
 
 gulp.task( 'build', function() {
 	gulp.src( 'src/*.js')
+		.pipe( jshint() )
 		.pipe( concat( 'crossfilter-helpers.js' ) )
 		.pipe( gulp.dest( '.' ) )
 		.pipe( concat( 'index.js' ) )
