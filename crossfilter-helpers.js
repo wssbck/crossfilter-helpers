@@ -1,4 +1,4 @@
-'use strict';
-
-var module = {};
-module.exports = module;
+var exports = (function(e){
+	'use strict';
+	return e;
+})(exports || {});
