@@ -1,1 +1,1 @@
-var exports=function(r){"use strict";return r}(exports||{});
+var exports=function(n){"use strict";return n.count={add:function(n){return++n.count,n},remove:function(n){return--n.count,n},init:function(){return{count:0}},access:function(n){return n.count},order:function(n){return n.count}},n}(exports||{});module.exports=exports;
