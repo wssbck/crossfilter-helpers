@@ -1,0 +1,24 @@
+- count
+- abs
+- sum
+- product
+- mean (including weighted mean)
+- harmonic average
+- geometric average
+- variance
+- standard deviation
+- correlation coefficients
+- v1/v2
+- part of total
+- add to set
+- min
+- max
+- spread (max - min)
+- stat - generalized quantile plus derivations (quartiles, percentiles, median)
+- string regexp?
+- string length
+- time
+- geo - distance from [lat, lon]
+- geo - distance spread
+- geo - area
+- geo - total distance
