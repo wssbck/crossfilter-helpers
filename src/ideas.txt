@@ -1,7 +1,9 @@
 + count
 + sum
 + mean (including weighted mean)
-- product
++ product
++ min
++ max
 - harmonic average
 - geometric average
 - variance
@@ -10,8 +12,6 @@
 - v1/v2
 - part of total
 - add to set
-- min
-- max
 - spread (max - min)
 - stat - generalized quantile plus derivations (quartiles, percentiles, median)
 - string regexp?

@@ -41,9 +41,71 @@ var exports = (function(e){
 		}
 	};
 
+	// reduce by the product of elements of a group, initially set to 1
+	e.product = function(fn){
+		return {
+			add : function(p, v){
+				p.product *= fn(v);
+				return p;
+			},
+			remove : function(p, v){
+				p.product /= fn(v);
+				return p;
+			},
+			init : function(){
+				return { product : 1 };
+			},
+			access : function(p){
+				return p.product;
+			}
+		}
+	};
+
+	// reduce by maximum value, initially set to -Infinity
+	e.max = function(fn){
+		return {
+			add : function(p, v){
+				p.max = fn(v) > p.max ? fn(v) : p.max;
+				return p;
+			},
+			remove : function(p, v){
+				p.max = fn(v) > p.max ? fn(v) : p.max;
+				return p;
+			},
+			init : function(){
+				return { max : -Infinity };
+			},
+			access : function(p){
+				return p.max;
+			}
+		}
+	};
+
+	// reduce by minimum value, initially set to +Infinity
+	e.min = function(fn){
+		return {
+			add : function(p, v){
+				p.min = fn(v) < p.min ? fn(v) : p.min;
+				return p;
+			},
+			remove : function(p, v){
+				p.min = fn(v) < p.min ? fn(v) : p.min;
+				return p;
+			},
+			init : function(){
+				return { min : Infinity };
+			},
+			access : function(p){
+				return p.min;
+			}
+		}
+	};
+
 	// reduce by the (weighted) mean of elements of a group
+	// if weight is not set, constant 1 is assumed
+	// if weight equals 0, sum is not changed (current record is ignored)
+	// if count equals 0, mean is zeroed
 	e.mean = function(fn_f, fn_w){
-		// weight from the parameter, otherwise set it to one, as in non-weighted mean
 		var w = typeof fn_w === 'function' ? fn_w : e.helper_constant(1);
 		return {
 			add : function(p, v){
