@@ -1,8 +1,7 @@
-- count
-- abs
-- sum
++ count
++ sum
++ mean (including weighted mean)
 - product
-- mean (including weighted mean)
 - harmonic average
 - geometric average
 - variance
@@ -17,6 +16,7 @@
 - stat - generalized quantile plus derivations (quartiles, percentiles, median)
 - string regexp?
 - string length
+- string - longest/shortest
 - time
 - geo - distance from [lat, lon]
 - geo - distance spread
