@@ -1,4 +1,4 @@
-crossfilter-helpers
+Crossfilter helpers
 ===================
 
-A set of aggregating functions for [crossfilter](http://square.github.io/crossfilter/).
+A set of reduction functions for use with [crossfilter](http://square.github.io/crossfilter/).
