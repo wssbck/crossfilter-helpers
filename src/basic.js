@@ -110,13 +110,13 @@ var exports = (function(e){
 		return {
 			add : function(p, v){
 				p.count += w(v);
-				p.sum   += w(v) ? fn_f(v) : 0;
+				p.sum   += fn_f(v) * w(v);
 				p.mean   = p.count ? p.sum / p.count : 0;
 				return p;
 			},
 			remove : function(p, v){
 				p.count -= w(v);
-				p.sum   -= w(v) ? fn_f(v) : 0;
+				p.sum   -= fn_f(v) * w(v);
 				p.mean   = p.count ? p.sum / p.count : 0;
 				return p;
 			},
