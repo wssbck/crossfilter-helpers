@@ -16,3 +16,7 @@ gulp.task( 'build', function() {
 		.pipe( concat( 'index.js' ) )
 		.pipe( gulp.dest( '.' ) );
 });
+
+gulp.task( 'test', function() {
+	
+});

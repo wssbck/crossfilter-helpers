@@ -1,8 +1,8 @@
 {
-  "name": "crossfilter-aggregations",
-  "version": "0.0.1",
+  "name": "crossfilter-helpers",
+  "version": "0.1.0",
   "license": "Apache-2.0",
-  "description": "A set of aggregating functions for crossfilter",
+  "description": "A set of reduction functions for use with crossfilter",
   "keywords": [
     "data",
     "analytics",
