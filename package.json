@@ -1,6 +1,6 @@
 {
   "name": "crossfilter-helpers",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "Apache-2.0",
   "description": "A set of reduction functions for use with crossfilter",
   "keywords": [
