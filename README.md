@@ -8,3 +8,9 @@ Install with npm:
 ```javascript
 npm install crossfilter-helpers
 ```
+
+Build from source:
+
+```javascript
+gulp build
+```
