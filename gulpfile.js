@@ -8,15 +8,16 @@ var
 gulp.task( 'build', function() {
 	gulp.src( 'src/*.js')
 		.pipe( jshint() )
-		.pipe( concat( 'crossfilter-helpers.js' ) )
+		.pipe( concat('crossfilter-helpers.js') )
 		.pipe( gulp.dest( '.' ) )
 		.pipe( uglify() )
-		.pipe( concat( 'crossfilter-helpers.min.js' ) )
+		.pipe( concat('crossfilter-helpers.min.js') )
 		.pipe( gulp.dest( '.' ) )
 		.pipe( concat( 'index.js' ) )
 		.pipe( gulp.dest( '.' ) );
 });
 
-gulp.task( 'test', function() {
-	
+gulp.task( 'test', function () {
+    return gulp.src( 'spec/test.js' )
+        .pipe( jasmine() );
 });
