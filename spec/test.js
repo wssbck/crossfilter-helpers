@@ -1,35 +1,42 @@
 var
-	crossfilter = require('crossfilter'),
-	aggr        = require('../index.js'),
-	data        = [
+	data  = [
 		{ g : "A", f : 10, n :  0 },
-		{ g : "A", f :  4, n :  8 },
+		{ g : "B", f :  4, n :  8 },
 		{ g : "B", f :  2, n : 10 },
-		{ g : "B", f :  3, n :  0 },
-		{ g : "B", f :  8, n :  4 },
+		{ g : "C", f :  3, n :  0 },
+		{ g : "C", f :  0, n :  4 },
 		{ g : "C", f :  9, n : 15 },
-		{ g : "C", f :  2, n :  3 },
-		{ g : "D", f :  3, n :  2 }
-	];
+		{ g : "D", f :  2, n :  3 },
+		{ g : "D", f :  3, n :  2 },
+		{ g : "D", f :  0, n :  2 },
+		{ g : "D", f :  7, n : 10 }
+	],
+	cross = require('crossfilter')(data),
+	aggr  = require('../index.js')
+	dimg  = cross.dimension(function( d ){ return d.g; }),
+	grg   = dimg.group();
 
-data = crossfilter(data);
-
-dimension = data.dimension(function(d){
-	return d.a;
+describe('Initialization', function() {
+	it('test data is an object', function() {
+		expect(typeof data).toBe('object');
+	});
+	it('test data contains 10 rows', function() {
+		expect(data.length).toBe(10);
+	});
+	it('crossfilter is initialized', function() {
+		expect(typeof cross.dimension).toBe('function');
+	});
+	it('crossfilter dimension is initialized', function() {
+		expect(typeof dimg.group).toBe('function');
+	});
+	it('crossfilter group is initialized', function() {
+		expect(typeof grg.reduce).toBe('function');
+	});
 });
 
-fn1 = function(d) {
-	return d.f;
-}
-
-fn2 = function(d) {
-	return d.n;
-}
-
-group = dimension.group().reduce(
-	aggr.mean(fn1).add,
-	aggr.mean(fn1).remove,
-	aggr.mean(fn1).init
-);
-
-console.log(group.top(Infinity));
+describe('Reduce by count', function() {
+	var group = dimg.group();
+	it('count is defined', function() {
+		expect(typeof aggr.count).toBe('function');
+	})
+});

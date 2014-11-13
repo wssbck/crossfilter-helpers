@@ -14,3 +14,9 @@ Build from source:
 ```javascript
 gulp build
 ```
+
+Run tests with Jasmine:
+
+```javascript
+gulp test
+```

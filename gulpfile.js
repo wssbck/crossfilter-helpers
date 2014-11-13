@@ -6,7 +6,7 @@ var
 	uglify  = require('gulp-uglify');
 
 gulp.task( 'build', function() {
-	gulp.src( 'src/*.js')
+	return gulp.src( 'src/*.js')
 		.pipe( jshint() )
 		.pipe( concat('crossfilter-helpers.js') )
 		.pipe( gulp.dest( '.' ) )
@@ -19,5 +19,7 @@ gulp.task( 'build', function() {
 
 gulp.task( 'test', function () {
     return gulp.src( 'spec/test.js' )
-        .pipe( jasmine() );
+        .pipe( jasmine( {
+        	verbose : true
+        }));
 });
