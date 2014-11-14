@@ -35,8 +35,31 @@ describe('Initialization', function() {
 });
 
 describe('Reduce by count', function() {
-	var group = dimg.group();
-	it('count is defined', function() {
+	var	
+		reduceAdd = aggr.count().add,
+		reduceRem = aggr.count().rem,
+		reduceIni = aggr.count().ini,
+		reduceAcc = aggr.count().acc,
+		reduce    = dimg.group().reduce(
+			reduceAdd, reduceRem, reduceIni
+		);
+
+	it('is defined', function() {
 		expect(typeof aggr.count).toBe('function');
-	})
+	});
+	it('returns reduce add function', function() {
+		expect(typeof reduceAdd).toBe('function');
+	});
+	it('returns reduce remove function', function() {
+		expect(typeof reduceRem).toBe('function');
+	});
+	it('returns reduce init function', function() {
+		expect(typeof reduceIni).toBe('function');
+	});
+	it('returns accessor function', function() {
+		expect(typeof reduceAcc).toBe('function');
+	});
+	it('returns 0 initially', function() {
+		expect(reduceAcc( reduceIni() )).toBe(0);
+	});
 });
