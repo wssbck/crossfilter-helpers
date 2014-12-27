@@ -1,4 +1,4 @@
-var exports = (function(e){
+var crossfilterh = (function(e){
 	'use strict';
 
 	/**
@@ -185,6 +185,6 @@ var exports = (function(e){
 
 	return e;
 
-})(exports || {});
+})(crossfilterh || {});
 
-module.exports = exports;
+module.exports = crossfilterh;

@@ -1,4 +1,4 @@
-var exports = (function(e){
+var crossfilterh = (function(e){
 	'use strict';
 
 	// build a general data accessor for reduce() parameter functions
@@ -23,6 +23,6 @@ var exports = (function(e){
 
 	return e;
 
-})(exports || {});
+})(crossfilterh || {});
 
-module.exports = exports;
+module.exports = crossfilterh;
