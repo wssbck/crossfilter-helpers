@@ -1,15 +1,15 @@
 var
 	data  = [
-		{ g : "A", f : 10, n :  0 },
-		{ g : "B", f :  4, n :  8 },
-		{ g : "B", f :  2, n : 10 },
-		{ g : "C", f :  3, n :  0 },
-		{ g : "C", f :  0, n :  4 },
-		{ g : "C", f :  9, n : 15 },
-		{ g : "D", f :  2, n :  3 },
-		{ g : "D", f :  3, n :  2 },
-		{ g : "D", f :  0, n :  2 },
-		{ g : "D", f :  7, n : 10 }
+		{ g : "A", f : 10,    n :  0   },
+		{ g : "B", f :  4,    n :  8   },
+		{ g : "B", f :  null, n : 10   },
+		{ g : "C", f :  3,    n : null },
+		{ g : "C", f :  0,    n :  4   },
+		{ g : "C", f :  null, n : 15   },
+		{ g : "D", f :  2,    n :  3   },
+		{ g : "D", f :  3,    n :  2   },
+		{ g : "D", f :  0,    n :  2   },
+		{ g : "D", f :  7,    n : null }
 	],
 	cross = require('crossfilter')(data),
 	aggr  = require('../index.js')
