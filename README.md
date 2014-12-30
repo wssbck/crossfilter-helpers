@@ -20,3 +20,13 @@ Run tests with Jasmine:
 ```javascript
 gulp test
 ```
+
+License
+=======
+
+Crossfilter Helpers is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+Versioning
+==========
+
+Crossfilter Helpers is versioned in accordance with [Semantic Versioning](http://semver.org).
