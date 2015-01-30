@@ -24,6 +24,6 @@ gulp test
 
 Crossfilter Helpers is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-## Versioning
+## Versioning and Development
 
-Crossfilter Helpers is versioned in accordance with [Semantic Versioning](http://semver.org).
+Crossfilter Helpers uses [Semantic Versioning](http://semver.org). The project is in early stage of development and changes quite rapidly - it is still not quite fit for production use. Please bear that in mind when you set it as a dependency, for example in your NPM package.
