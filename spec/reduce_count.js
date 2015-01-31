@@ -12,37 +12,13 @@ var
 		{ g : "D", f :   0.2, n : null }
 	],
 	cross = require('crossfilter')(data),
-	aggr  = require('../index.js')
+	aggr  = require('../index.js'),
 	dimg  = cross.dimension(function( d ){ return d.g; }),
-    dimf  = cross.dimension(function( d ){ return d.g; }),
-	grg   = dimg.group();
-
-describe('Initialization', function() {
-	
-    it('test data is an object', function() {
-		expect(typeof data).toBe('object');
-	});
-	
-    it('test data contains 10 rows', function() {
-		expect(data.length).toBe(10);
-	});
-	
-    it('crossfilter is initialized', function() {
-		expect(typeof cross.dimension).toBe('function');
-	});
-	
-    it('crossfilter dimension is initialized', function() {
-		expect(typeof dimg.group).toBe('function');
-	});
-	
-    it('crossfilter group is initialized', function() {
-		expect(typeof grg.reduce).toBe('function');
-	});
-});
+    dimf  = cross.dimension(function( d ){ return d.g; });
 
 describe('Reduce by count', function() {
-	
-    var	
+
+	var
 		reduceAdd = aggr.count().add,
 		reduceRem = aggr.count().rem,
 		reduceIni = aggr.count().ini,
