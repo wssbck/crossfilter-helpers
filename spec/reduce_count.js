@@ -1,28 +1,36 @@
 var
 	data  = [
-		{ g : "A" },
-		{ g : "B" },
-		{ g : "B" },
-		{ g : "C" },
-		{ g : "C" },
-		{ g : "C" },
-		{ g : "D" },
-		{ g : "D" },
-		{ g : "D" },
-		{ g : "D" }
+		{ id :  1, g : "A" },
+		{ id :  2, g : "A" },
+		{ id :  3, g : "A" },
+		{ id :  4, g : "A" },
+		{ id :  5, g : "A" },
+		{ id :  6, g : "B" },
+		{ id :  7, g : "B" },
+		{ id :  8, g : "B" },
+		{ id :  9, g : "B" },
+		{ id : 10, g : "C" }
 	],
 	cross   = require('crossfilter')(data),
-	helpers = require('../index.js'),
-	dimg    = cross.dimension(function( d ){ return d.g; }),
-    dimf    = cross.dimension(function( d ){ return d.g; });
+	helpers = require('../index.js');
 
 describe('Reduce by count', function() {
 
 	var
-		reduceAdd = helpers.count().add,
-		reduceRem = helpers.count().rem,
-		reduceIni = helpers.count().ini,
-		reduceAcc = helpers.count().acc;
+		dimg      = cross.dimension(function(d){ return d.g; }),
+   		dimf      = cross.dimension(function(d){ return d.id; }),
+   		reduction = helpers.count(),
+		reduceAdd = reduction.add,
+		reduceRem = reduction.rem,
+		reduceIni = reduction.ini,
+		reduceAcc = reduction.acc,
+		reduce    = dimg.group().reduce(
+			reduceAdd, reduceRem, reduceIni
+		),
+        reduceAll = dimg.groupAll().reduce(
+            reduceAdd, reduceRem, reduceIni
+        ),
+		reduceVal;
 
 	it('is defined', function() {
 		expect(typeof helpers.count).toBe('function');
@@ -48,41 +56,54 @@ describe('Reduce by count', function() {
 		expect(reduceAcc( reduceIni() )).toBe(0);
 	});
 
-	describe('reduces groups correctly', function() {
+	describe('calculates reduction values correctly', function() {
 
-		var
-			reduce = dimg.group().reduce(
-				reduceAdd, reduceRem, reduceIni
-			),
-            reduceAll = dimg.groupAll().reduce(
-                reduceAdd, reduceRem, reduceIni
-            ),
-			reduceVal;
-
-        it('whole dataset to 10', function() {
+        it('whole dataset reduced to 10', function() {
             reduceVal = reduceAcc( reduceAll.value() );
             expect(reduceVal).toBe(10);
         });
-		
-        it('group A to 1', function() {
-		 	dimf.filter('A');
+
+        it('group A reduced to 5', function() {
+		 	reduceVal = reduceAcc( reduce.all()[0].value );
+			expect( reduceVal ).toBe(5);
+		});
+
+		it('group B reduced to 4', function() {
+		 	reduceVal = reduceAcc( reduce.all()[1].value );
+		 	expect( reduceVal ).toBe(4);
+		});
+
+		it('group C reduced to 1', function() {
+		 	reduceVal = reduceAcc( reduce.all()[2].value );
+		 	expect( reduceVal ).toBe(1);
+		});
+
+	});
+
+	describe('also when a dimension is filtered', function() {
+
+		beforeEach(function() {
+		    dimf.filter(2);
+	  	});
+
+        it('whole dataset reduced to 1', function() {
+            reduceVal = reduceAcc( reduceAll.value() );
+            expect(reduceVal).toBe(1);
+        });
+
+        it('group A reduced to 1', function() {
 		 	reduceVal = reduceAcc( reduce.all()[0].value );
 			expect( reduceVal ).toBe(1);
 		});
-		it('group B to 2', function() {
-		 	dimf.filter('B');
+
+		it('group B reduced to 0', function() {
 		 	reduceVal = reduceAcc( reduce.all()[1].value );
-		 	expect( reduceVal ).toBe(2);
+		 	expect( reduceVal ).toBe(0);
 		});
-		it('group C to 3', function() {
-		 	dimf.filter('C');
+
+		it('group C reduced to 0', function() {
 		 	reduceVal = reduceAcc( reduce.all()[2].value );
-		 	expect( reduceVal ).toBe(3);
-		});
-		it('group D to 4', function() {
-		 	dimf.filter('D');
-		 	reduceVal = reduceAcc( reduce.all()[3].value );
-		 	expect( reduceVal ).toBe(4);
+		 	expect( reduceVal ).toBe(0);
 		});
 
 	});
