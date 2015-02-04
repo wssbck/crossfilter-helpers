@@ -33,20 +33,23 @@ var crossfilterh = (function(e){
 	e.sum = function(fn){
 		return {
 			add : function(p, v){
-				p.sum += fn(v);
+				var val = new Decimal(fn(v));
+				p.sum = p.sum.plus( val );
 				return p;
 			},
 			rem : function(p, v){
-				p.sum -= fn(v);
+				var val = new Decimal(fn(v));
+				p.sum = p.sum.minus( val );
 				return p;
 			},
 			ini : function(){
+				var val = new Decimal(0);
 				return {
-					sum : 0
+					sum : val
 				};
 			},
 			acc : function(p){
-				return p.sum;
+				return p.sum.toNumber();
 			}
 		}
 	};
