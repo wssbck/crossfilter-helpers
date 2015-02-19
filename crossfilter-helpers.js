@@ -158,30 +158,43 @@ var crossfilterh = (function(e){
 	 if weight is not set, constant 1 is assumed
 	 initial value: 0
 	*/
-	e.mean = function(fn_f, fn_w){
-		var w = typeof fn_w === 'undefined' ? e.helper_constant(1) : fn_w;
+	e.mean = function(fn_x, fn_w){
+		var fn_w = typeof fn_w != 'function' ? e.helper_constant(1) : fn_w;
 		return {
 			add : function(p, v){
-				p.sum   += fn_f(v) * w(v);
-				p.count += w(v);
-				p.mean   = p.count ? p.sum / p.count : 0;
+				var
+					x = new Decimal( fn_x(v) ),
+					w = new Decimal( fn_w(v) );
+				
+				p.sum   =  p.sum.plus( x.times(w) );
+				p.count =  p.count.plus(w);
+				p.mean  = !p.count.isZero() ? p.sum.dividedBy( p.count ) : new Decimal(0);
 				return p;
 			},
 			rem : function(p, v){
-				p.sum   -= fn_f(v) * w(v);
-				p.count -= w(v);
-				p.mean   = p.count ? p.sum / p.count : 0;
+				var
+					x = new Decimal( fn_x(v) ),
+					w = new Decimal( fn_w(v) );
+
+				p.sum   =  p.sum.minus( x.times(w) );
+				p.count =  p.count.minus(w);
+				p.mean  = !p.count.isZero() ? p.sum.dividedBy( p.count ) : new Decimal(0);
 				return p;
 			},
 			ini : function(){
+				var
+					count = new Decimal(0),
+					sum   = new Decimal(0),
+					mean  = new Decimal(0);
+
 				return {
-					count : 0,
-					sum   : 0,
-					mean  : 0
+					count : count,
+					sum   : sum,
+					mean  : mean
 				};
 			},
 			acc : function(p){
-				return p.mean;
+				return p.mean.toNumber();
 			}
 		}
 	};
