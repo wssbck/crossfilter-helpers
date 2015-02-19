@@ -21,8 +21,8 @@ var
 describe('Reduce by sum', function() {
 
 	var
+		dimf      = cross.dimension(function(d){ return d.id; }),
 		dimg      = cross.dimension(function(d){ return d.g; }),
-    	dimf      = cross.dimension(function(d){ return d.id; }),
     	reduction = helpers.sum(function(d){ return d.n }),
 		reduceAdd = reduction.add,
 		reduceRem = reduction.rem,
@@ -37,7 +37,7 @@ describe('Reduce by sum', function() {
 		reduceVal;
 
 	it('is defined', function() {
-		expect(typeof helpers.count).toBe('function');
+		expect(typeof helpers.sum).toBe('function');
 	});
 	
     it('returns reduce add function', function() {

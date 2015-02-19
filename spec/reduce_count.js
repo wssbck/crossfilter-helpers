@@ -17,8 +17,8 @@ var
 describe('Reduce by count', function() {
 
 	var
+		dimf      = cross.dimension(function(d){ return d.id; }),
 		dimg      = cross.dimension(function(d){ return d.g; }),
-   		dimf      = cross.dimension(function(d){ return d.id; }),
    		reduction = helpers.count(),
 		reduceAdd = reduction.add,
 		reduceRem = reduction.rem,
