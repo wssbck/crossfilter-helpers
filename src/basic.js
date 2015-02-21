@@ -61,20 +61,23 @@ var crossfilterh = (function(e){
 	e.product = function(fn){
 		return {
 			add : function(p, v){
-				p.product *= fn(v);
+				var v = new Decimal( fn(v) );
+				p.product = p.product.times(v);
 				return p;
 			},
 			rem : function(p, v){
-				p.product = fn(v) != 0 ? p.product / fn(v) : p.product;
+				var v = new Decimal( fn(v) );
+				p.product = v.isZero() ? p.product : p.product.dividedBy(v);
 				return p;
 			},
 			ini : function(){
+				var product = new Decimal(1);
 				return {
-					product : 1
+					product : product
 				};
 			},
 			acc : function(p){
-				return p.product;
+				return p.product.toNumber();
 			}
 		}
 	};
