@@ -15,6 +15,7 @@
     "name": "wssbck",
     "url": "http://wssbck.cc"
   },
+  "main": "./crossfilter-helpers.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/wssbck/crossfilter-helpers"

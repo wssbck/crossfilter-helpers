@@ -12,8 +12,6 @@ gulp.task( 'build', function() {
 		.pipe( gulp.dest( '.' ) )
 		.pipe( uglify() )
 		.pipe( concat('crossfilter-helpers.min.js') )
-		.pipe( gulp.dest( '.' ) )
-		.pipe( concat( 'index.js' ) )
 		.pipe( gulp.dest( '.' ) );
 });
 

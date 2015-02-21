@@ -13,7 +13,7 @@ var
 	],
 	cross   = require('crossfilter')(data),
 	decimal = require('decimal.js'),
-	helpers = require('../index.js');
+	helpers = require('../crossfilter-helpers.js');
 
 	if(typeof window != 'undefined') { window.Decimal = decimal }
 	if(typeof global != 'undefined') { global.Decimal = decimal }

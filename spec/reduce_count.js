@@ -12,7 +12,7 @@ var
 		{ id : 10, g : "C" }
 	],
 	cross   = require('crossfilter')(data),
-	helpers = require('../index.js');
+	helpers = require('../crossfilter-helpers.js');
 
 describe('Reduce by count', function() {
 
