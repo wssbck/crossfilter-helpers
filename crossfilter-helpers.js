@@ -89,15 +89,22 @@ var crossfilterh = (function(e){
 	e.max = function(fn){
 		return {
 			add : function(p, v){
+				p.reg.push(fn(v));
 				p.max = fn(v) > p.max ? fn(v) : p.max;
 				return p;
 			},
 			rem : function(p, v){
-				p.max = fn(v) > p.max ? fn(v) : p.max;
+				var max = -Infinity;
+				p.reg.splice( p.reg.indexOf(fn(v)), 1);
+				p.reg.forEach(function( v ){
+					max = v > max ? v : max;
+				});
+				p.max = max;
 				return p;
 			},
 			ini : function(){
 				return {
+					reg : [],
 					max : -Infinity
 				};
 			},
@@ -114,15 +121,22 @@ var crossfilterh = (function(e){
 	e.min = function(fn){
 		return {
 			add : function(p, v){
+				p.reg.push(fn(v));
 				p.min = fn(v) < p.min ? fn(v) : p.min;
 				return p;
 			},
 			rem : function(p, v){
-				p.min = fn(v) < p.min ? fn(v) : p.min;
+				var min = Infinity;
+				p.reg.splice( p.reg.indexOf(fn(v)), 1);
+				p.reg.forEach(function( v ){
+					min = v < min ? v : min;
+				});
+				p.min = min;
 				return p;
 			},
 			ini : function(){
 				return {
+					reg : [],
 					min : Infinity
 				};
 			},
@@ -210,10 +224,12 @@ module.exports = crossfilterh;
 var crossfilterh = (function(e){
 	'use strict';
 
-	// build a general data accessor for reduce() parameter functions
-	// if f is a function, it will return this function
-	// otherwise it will build a function that, given a datum d,
-	// will return d[f]
+	/**
+	 build a general data accessor for reduce() parameter functions
+	 if f is a function, it will return this function
+	 otherwise it will build a function that, given a datum d,
+	 will return d[f]
+	*/
 	e.helper_accessor = function(f) {
 		if (typeof f != 'function') {
 			return function(d) {
@@ -223,7 +239,9 @@ var crossfilterh = (function(e){
 		return f;
 	}
 
-	// build a function returning a selected variable
+	/**
+	 build a function returning a selected variable
+	*/
 	e.helper_constant = function(c) {
 		return function() {
 			return c;
