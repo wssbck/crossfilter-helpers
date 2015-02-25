@@ -1,6 +1,6 @@
 ### Crossfilter Helpers
 
-A set of reduction functions for [Crossfilter's reduce()](https://github.com/square/crossfilter/wiki/API-Reference#group_reduce).
+Reduction functions for [Crossfilter's reduce()](https://github.com/square/crossfilter/wiki/API-Reference#group_reduce).
 
 [See the wiki](https://github.com/wssbck/crossfilter-helpers/wiki) for more details.
 
