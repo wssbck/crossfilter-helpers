@@ -95,7 +95,7 @@ var crossfilterh = (function(e){
 			},
 			rem : function(p, v){
 				var max = -Infinity;
-				p.reg.splice( p.reg.indexOf(fn(v)), 1);
+				p.reg.splice( p.reg.indexOf(fn(v)), 1 );
 				p.reg.forEach(function( v ){
 					max = v > max ? v : max;
 				});
@@ -127,7 +127,7 @@ var crossfilterh = (function(e){
 			},
 			rem : function(p, v){
 				var min = Infinity;
-				p.reg.splice( p.reg.indexOf(fn(v)), 1);
+				p.reg.splice( p.reg.indexOf(fn(v)), 1 );
 				p.reg.forEach(function( v ){
 					min = v < min ? v : min;
 				});
