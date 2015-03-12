@@ -15,7 +15,7 @@ gulp.task( 'build', function() {
 		.pipe( gulp.dest( '.' ) );
 });
 
-gulp.task( 'test', function () {
+gulp.task( 'test', ['build'], function () {
     return gulp.src( 'spec/*.js' )
         .pipe( jasmine( {
         	verbose : true
