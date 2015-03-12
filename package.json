@@ -1,6 +1,6 @@
 {
   "name": "crossfilter-helpers",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "license": "Apache-2.0",
   "description": "Reduction functions for Crossfilter's reduce()",
   "keywords": [
@@ -22,12 +22,13 @@
   },
   "dependencies": {
     "crossfilter": "~1.3.9",
-    "decimal.js" : "~4.0.1"
+    "decimal.js": "~4.0.1"
   },
   "devDependencies": {
+    "bower": "^1.3.12",
     "gulp": "~3.8.7",
-    "gulp-jasmine": "~2.0.0",
     "gulp-concat": "~2.4.0",
+    "gulp-jasmine": "~2.0.0",
     "gulp-jshint": "~1.8.4",
     "gulp-uglify": "~1.0.1"
   },
