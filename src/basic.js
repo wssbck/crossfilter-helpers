@@ -146,29 +146,55 @@ var crossfilterh = (function(e){
 		}
 	};
 
-	// reduce by spread, meaning the difference between the mininum and the maximum of the group
-	// e.spread = function(fn){
-	// 	return {
-	// 		add : function(p, v){
-	// 			p.min = fn(v) < p.min ? fn(v) : p.min;
-	// 			return p;
-	// 		},
-	// 		rem : function(p, v){
-	// 			p.min = fn(v) < p.min ? fn(v) : p.min;
-	// 			return p;
-	// 		},
-	// 		ini : function(){
-	// 			return {
-	// 				spread : 0,
-	// 				min    : Infinity,
-	// 				max    : -Infinity
-	// 			};
-	// 		},
-	// 		acc : function(p){
-	// 			return p.spread;
-	// 		}
-	// 	}
-	// };
+	/**
+	 reduce by spread, meaning the difference between the mininum and the maximum of a group
+	 initial value: 0
+	*/
+	e.spread = function(fn){
+		return {
+			add : function(p, v){
+				var
+					min,
+					max;
+
+				p.reg.push(fn(v));
+				p.min    = fn(v) < p.min ? fn(v) : p.min;
+				p.max    = fn(v) > p.max ? fn(v) : p.max;
+				min      = new Decimal(p.min);
+				max      = new Decimal(p.max);
+				p.spread = max.minus( min ).absoluteValue().toNumber();
+				return p;
+			},
+			rem : function(p, v){
+				var
+					min =  Infinity,
+					max = -Infinity;
+
+				p.reg.splice( p.reg.indexOf(fn(v)), 1);
+				p.reg.forEach(function( v ){
+					min = v < min ? v : min;
+					max = v > max ? v : max;
+				});
+				p.min    = min;
+				p.max    = max;
+				min      = new Decimal(p.min);
+				max      = new Decimal(p.max);
+				p.spread = max.minus( min ).absoluteValue().toNumber();
+				return p;
+			},
+			ini : function(){
+				return {
+					reg    :  [],
+					min    :  Infinity,
+					max    : -Infinity,
+					spread :  0
+				};
+			},
+			acc : function(p){
+				return p.spread;
+			}
+		}
+	};
 
 	/**
 	 reduce by the (weighted) mean of elements of a group
