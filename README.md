@@ -1,3 +1,5 @@
+**This project is not actively maintained and should be considered archived.**
+
 ### Crossfilter Helpers
 
 Reduction functions for [Crossfilter's reduce()](https://github.com/square/crossfilter/wiki/API-Reference#group_reduce).
