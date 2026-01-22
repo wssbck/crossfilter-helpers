@@ -1,4 +1,4 @@
-**This project is not actively maintained and should be considered archived.**
+**(This project is not actively maintained and should be regarded as being archived.)**
 
 ### Crossfilter Helpers
 
